@@ -2,14 +2,14 @@ import { ToastContainer } from "react-toastify";
 import styles from "./login.module.css";
 
 const Login = () => {
-  return;
+  return(
   <>
     <ToastContainer />
-    <main>
-      <img src="../imgs/negona_robotica.png" alt="mulher robotica login" />
+    <main id={styles.main}>
+      <img src="../imgs/negona_robotica.png" alt="mulher robotica login" id={styles.imagem} />
       <div id={styles.campo_login}>
         <form id={styles.formulario}>
-          <img src="../imgs/logo_royal.png" alt="logo do royal" />
+          <img src="../imgs/logo_royal.png" alt="logo do royal" id={styles.imagem_login} />
           <div id={styles.campo_email}>
             <label htmlFor="email">Email</label>
             <input
@@ -31,5 +31,7 @@ const Login = () => {
         </form>
       </div>
     </main>
-  </>;
-};
+  </>
+  )
+}
+export default Login;

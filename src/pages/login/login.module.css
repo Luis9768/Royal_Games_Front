@@ -1,0 +1,31 @@
+#main {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 0.9fr 0.9fr;
+  background-color: var(--fundo-roxo-escuro) ;
+  align-items: center;
+}
+#imagem {
+  height: 100vh;
+}
+#campo_login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  height: 80%;
+  width: 800px;
+  background-color: var(--fundo-roxo-escuro);
+}
+#imagem_login{
+    height: 150px;
+}
+#formulario{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+}

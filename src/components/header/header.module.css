@@ -1,0 +1,41 @@
+#header_container {
+  background-color: var(--fundo-roxo-escuro);
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 80px;
+}
+#imagem {
+  height: 10vh;
+}
+#direita {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+#botao_catalogo {
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  font-weight: 300;
+  background-color: var(--fundo-roxo-escuro);
+  color: white;
+padding: 9px 18px;
+  border: none;
+}
+#botao_catalogo:hover {
+  border: 1px solid red;
+}
+
+#botao_login {
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  font-weight: 300;
+  background-color: var(--fundo-roxo-escuro);
+  color: white;
+  padding: 9px 18px;
+  border: none;
+}
+#botao_login:hover {
+  border: 1px solid red;
+}
