@@ -17,6 +17,7 @@ const Login = () => {
               name="email"
               placeholder="email@exemplo.com"
               required
+              id={styles.caixa_email}
             />
           </div>
           <div id={styles.campo_senha}>
@@ -29,6 +30,7 @@ const Login = () => {
             />
           </div>
         </form>
+        <button id={styles.botao}>Entrar</button>
       </div>
     </main>
   </>

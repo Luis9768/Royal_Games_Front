@@ -5,13 +5,13 @@ import { ToastContainer } from "react-toastify";
 
 
 const orbitron = Orbitron({
-    variable: "--font-titulo",
+    variable: "--fonte-titulo",
     weight: ["400", "500", "600", "700"],
     subsets: ["latin"],
 });
 
 const exo_2 = Exo_2({
-    variable: "--font-padrao",
+    variable: "--fonte-padrao",
     weight: ["300", "400", "500", "600", "700"],
     subsets: ["latin"],
 });

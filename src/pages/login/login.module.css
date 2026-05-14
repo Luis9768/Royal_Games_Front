@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: grid;
   grid-template-columns: 0.9fr 0.9fr;
-  background-color: var(--fundo-roxo-escuro) ;
+  background-color: var(--fundo-roxo-escuro);
   align-items: center;
 }
 #imagem {
@@ -20,12 +20,74 @@
   width: 800px;
   background-color: var(--fundo-roxo-escuro);
 }
-#imagem_login{
-    height: 150px;
+#imagem_login {
+  height: 150px;
 }
-#formulario{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 50px;
+#formulario {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+}
+#imagem_login {
+  transform: translateY(-70px);
+}
+#campo_email {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transform: translateY(-60px);
+}
+#campo_email label {
+  color: white;
+  font-family: var(--fonte-padrao);
+  font-size: 1.5rem;
+}
+#campo_email input {
+  border-radius: 10px;
+  width: 500px;
+  padding-left: 15px;
+  border: none;
+  font-size: 16px;
+  height: 45px;
+}
+#campo_senha{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transform: translateY(-60px);
+}
+#campo_senha label{
+  color: white;
+  font-family: var(--fonte-padrao);
+  font-size: 1.5rem;
+}
+#campo_senha input{
+  border-radius: 10px;
+  width: 500px;
+  padding-left: 15px;
+  border: none;
+  align-items: center;
+  font-size: 16px;
+  height: 45px;
+}
+#campo_login ::placeholder{
+  align-items: center;
+}
+#botao{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  width: 150px;
+  height: 60px;
+  background-color: var(--fundo-roxo-escuro);
+  color: aliceblue;
+  font-size: 1.6rem;
+  font-family: var(--fonte-padrao);
+  border: none;
+}
+#botao:hover {
+  border: 1px solid red;
 }
