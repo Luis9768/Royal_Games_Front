@@ -74,11 +74,13 @@
 #campo_login ::placeholder{
   align-items: center;
 }
-#botao{
+#formulario button{
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center; /* Centraliza o texto "Entrar" no meio do botão */
+  align-self: center; /* Centraliza o botão em si no meio do formulário */
+  
   border-radius: 16px;
   width: 150px;
   height: 60px;
@@ -87,7 +89,8 @@
   font-size: 1.6rem;
   font-family: var(--fonte-padrao);
   border: none;
+  cursor: pointer;
 }
-#botao:hover {
+#formulario button:hover {
   border: 1px solid red;
 }

@@ -1,0 +1,72 @@
+/* Fundo geral e configurações base */
+.container {
+  background-color: #232034;
+  color: #ffffff;
+  padding: 40px 20px;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: normal;
+  margin-bottom: 40px;
+}
+
+.titulo::after {
+  content: "";
+  display: block;
+  width: 250px;
+  height: 1px;
+  background-color: #ff2759;
+  margin: 10px auto 0;
+}
+
+#filtros {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  font-family: var(--fonte-padrao);
+}
+.campoPesquisa input {
+  width: 350px;
+  padding: 10px 15px;
+  background-color: #434155;
+  border: 1px solid #434155;
+  border-radius: 4px;
+  color: #ffffff;
+  outline: none;
+}
+
+.campoPesquisa input::placeholder {
+  color: #a0a0a0;
+}
+
+.botao {
+  padding: 10px 15px;
+  background-color: #434155;
+  border: 1px solid #434155;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  min-width: 140px;
+  outline: none;
+}
+
+/* Efeito de foco amarelo como mostrado na imagem */
+.botao:focus, .campoPesquisa input:focus {
+  border: 1px solid #ffc107;
+}
+
+/* Grid onde os cards vão ficar */
+.gridProdutos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
