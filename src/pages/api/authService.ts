@@ -4,7 +4,7 @@ import { api } from "./api";
 
 export async function login(email: string, senha: string){
     try{
-        const response = await api.post("Login/login", {email, senha});
+        const response = await api.post("Autenticacao/login", {email, senha});
 
         const token = response.data.token;
 

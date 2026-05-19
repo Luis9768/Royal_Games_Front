@@ -2,7 +2,7 @@ import Pagination from '@mui/material/Pagination';
 
 const Paginacao = () => {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px', alignItems: 'center'}}>
       <Pagination 
         count={5} // Quantidade total de páginas
         variant="outlined" // Deixa o botão vazado, só com borda

@@ -1,6 +1,7 @@
 import CardProduto from "@/components/card-produto/card-produto";
 import Footer from "@/components/footer/footer";
 import Header from "@/components/header/header";
+import InfoBanner from "@/components/info-banner/info-banner";
 import ListaProduto from "@/components/lista-produto/lista-produto";
 import styles from "@/pages/home/home.module.css";
 import Link from "next/link";
@@ -29,14 +30,8 @@ const Home = () => {
         <section id={styles.catalogo}>
           <ListaProduto />
         </section>
-        <section id={styles.avisos}>
-          <h2>Jogos online podem afetar o comportanto humano?</h2>
-          <Link href={"/detalhe-produto/"}>
-            <img src="../imgs/lolzin.png" alt="lollll" />
-          </Link>
-          <Link href={"/detalhe-produto/"}>
-            <img src="../imgs/cs.png" alt="" />
-          </Link>
+        <section>
+          <InfoBanner />
         </section>
       </main>
       <Footer />

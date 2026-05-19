@@ -22,11 +22,9 @@
     
     width: 100%;
     
-
     padding-left: max(20px, calc((100% - 1550px) / 2 + 20px));
     padding-right: 0;
 }
-
 
 .textos_banner {
     display: flex;
@@ -46,7 +44,6 @@
 .subtitulo_banner {
     font-family: var(--font-padrao);
     color: #d6d2e6;
-;
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.3;
@@ -56,25 +53,57 @@
 
 .container_banner img {
     width: 100%;
-    max-width: 650px; /* Aumentei um pouco o max-width para a imagem preencher melhor o canto */
+    max-width: 650px; 
     justify-self: end;
     object-fit: contain;
-    object-position: right; /* Força o alinhamento da imagem para o extremo direito da sua caixa */
+    object-position: right; 
 }
 
+#catalogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--fundo-roxo-escuro);
+    padding: 40px 20px; /* Adicionado um padding para respirar nas laterais */
+}
+
+#catalogo h2 {
+    font-size: 50px;
+    color: white;
+    font-family: var(--fonte-titulo);
+    border-bottom: 2px solid red;
+    display: block;              
+    width: 40%;                
+    text-align: center;          
+    padding-bottom: 15px;        
+    margin-bottom: 20px;
+}
+
+#filtros {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Garante que os filtros usem o espaço disponível para o space-between funcionar */
+    max-width: 1200px; /* Evita que os filtros fiquem excessivamente longe em telas ultra-wide */
+    gap: 20px;
+}
+
+/* ==========================================================================
+   MEDIA QUERY (RESPONSIVIDADE)
+   ========================================================================== */
+
 @media (max-width: 900px) {
+    /* Responsividade do Banner */
     .container_banner {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 30px;
-        /* No mobile, restauramos o padding normal para não colar nas bordas */
         padding-left: 20px; 
         padding-right: 20px;
     }
 
     .textos_banner {
         align-items: center; 
-        transform: none; /* Removemos o "pulo" pra cima no celular para não bugar o layout */
+        transform: none; 
     }
 
     .subtitulo_banner {
@@ -84,29 +113,18 @@
     .container_banner img {
         justify-self: center;
         width: 80%;
-        object-position: center; /* Centraliza a imagem novamente no mobile */
+        object-position: center; 
+    }
+
+    /* O que foi adicionado para o Catálogo e Filtros: */
+    #catalogo h2 {
+        font-size: 32px; /* Diminui o texto para não estourar a tela do celular */
+        width: 80%;      /* Aumenta a largura da linha vermelha para o texto respirar */
+    }
+
+    #filtros {
+        flex-direction: column; /* Empilha os filtros um embaixo do outro */
+        align-items: center;    /* Centraliza os elementos do filtro */
+        gap: 15px;              /* Cria um espaçamento vertical entre eles */
     }
 }
-#catalogo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--fundo-roxo-escuro);
-
-}
-#catalogo h2{
-    font-size: 50px;
-    color: white;
-    font-family: var(--fonte-titulo);
-    border-bottom: 2px solid red;
-    display: block;             
-    width:40%;                
-    text-align: center;          
-    padding-bottom: 15px;        
-    margin-bottom: 20px;
-}
-#filtros{
-    display: flex;
-    justify-content: space-between;
-}
-

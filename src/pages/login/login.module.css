@@ -11,86 +11,114 @@
 #campo_login {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  height: 80%;
-  width: 800px;
+  padding: 50px 40px; 
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  width: 100%;
+  max-width: 500px; 
   background-color: var(--fundo-roxo-escuro);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3); 
 }
+
 #imagem_login {
-  height: 150px;
+  height: 120px;
+  margin-bottom: 30px; 
 }
+
 #formulario {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  gap: 50px;
+  width: 100%;
+  gap: 25px; 
 }
-#imagem_login {
-  transform: translateY(-70px);
-}
-#campo_email {
+
+#campo_email, #campo_senha {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  transform: translateY(-60px);
+  gap: 8px; 
+  align-items: flex-start; 
+  width: 100%;
 }
-#campo_email label {
+
+#campo_email label, #campo_senha label {
   color: white;
   font-family: var(--fonte-padrao);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  padding-left: 5px; 
 }
-#campo_email input {
+
+#campo_email input, #campo_senha input {
   border-radius: 10px;
-  width: 500px;
+  width: 100%; 
   padding-left: 15px;
-  border: none;
+  border: 2px solid transparent;
   font-size: 16px;
-  height: 45px;
+  height: 50px;
+  box-sizing: border-box; 
+  background-color: #f4f4f4;
+  transition: all 0.3s ease; 
 }
-#campo_senha{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transform: translateY(-60px);
+
+#campo_email input:focus, #campo_senha input:focus {
+  outline: none;
+  border: 2px solid #ff004f; 
+  background-color: #ffffff;
 }
-#campo_senha label{
-  color: white;
-  font-family: var(--fonte-padrao);
-  font-size: 1.5rem;
-}
-#campo_senha input{
-  border-radius: 10px;
-  width: 500px;
-  padding-left: 15px;
-  border: none;
-  align-items: center;
-  font-size: 16px;
-  height: 45px;
-}
-#campo_login ::placeholder{
-  align-items: center;
-}
-#formulario button{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; /* Centraliza o texto "Entrar" no meio do botão */
-  align-self: center; /* Centraliza o botão em si no meio do formulário */
-  
-  border-radius: 16px;
-  width: 150px;
-  height: 60px;
-  background-color: var(--fundo-roxo-escuro);
+
+#formulario button {
+  margin-top: 15px;
+  align-self: center;
+  border-radius: 16px; 
+  width: 180px;
+  height: 55px;
+  background-color: var(--fundo-vermelho-destaque); 
   color: aliceblue;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
+  font-weight: bold; 
   font-family: var(--fonte-padrao);
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease; 
 }
+
 #formulario button:hover {
-  border: 1px solid red;
+  background-color: #cc003f; 
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 15px rgba(255, 0, 79, 0.4);
+}
+
+@media (max-width: 1200px) {
+  #main {
+    grid-template-columns: 1fr; 
+    justify-items: center; 
+  }
+  
+  #imagem {
+    display: none; 
+  }
+  
+  #campo_login {
+    width: 90%; 
+    height: auto; 
+    padding: 60px 0; 
+  }
+
+  #imagem_login, #campo_email, #campo_senha {
+    transform: translateY(0); 
+  }
+
+  #campo_email input, #campo_senha input {
+    width: 90vw; 
+    max-width: 500px;
+  }
+  
+  #campo_email, #campo_senha {
+    align-items: center; 
+  }
+  
+  #campo_email label, #campo_senha label {
+    width: 90vw;
+    max-width: 500px;
+  }
 }
