@@ -99,7 +99,14 @@ export async function excluirJogo(jogoId: number) {
         throw new Error(error.response.data)
     }
 }
-
+export async function listarGeneros() {
+  try {
+    const response = await api.get("Genero"); 
+    return response.data; 
+  } catch (error: any) {
+    throw new Error(error.response?.data || error.message);
+  }
+}
 export async function editarJogo(jogoId: number, dados: JogoFormulario) {
     try{
         const formData = new FormData();

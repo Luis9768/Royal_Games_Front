@@ -1,35 +1,35 @@
 import Pagination from '@mui/material/Pagination';
 
-const Paginacao = () => {
+interface PaginacaoProps {
+  count: number;
+  page: number;
+  onChange: (event: React.ChangeEvent<unknown>, value: number) => void;
+}
+
+const Paginacao = ({ count, page, onChange }: PaginacaoProps) => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px', alignItems: 'center'}}>
       <Pagination 
-        count={5} // Quantidade total de páginas
-        variant="outlined" // Deixa o botão vazado, só com borda
-        shape="rounded" // Deixa quadradinho com cantos arredondados (igual sua imagem)
-        
-        // Aqui entra a mágica: o "CSS" do MUI
+        count={count} // Quantidade total de páginas
+        page={page} // Página atual
+        onChange={onChange} // Função que roda ao mudar de página
+        variant="outlined"
+        shape="rounded"
         sx={{
           '& .MuiPaginationItem-root': {
-            color: '#ffffff', // Cor do texto dos números e setas
-            borderColor: '#ff2759', // Borda rosa/vermelha
+            color: '#ffffff',
+            borderColor: '#ff2759',
             fontSize: '1rem',
             fontWeight: 'bold',
-            
-            // Efeito quando passa o mouse
             '&:hover': {
-              backgroundColor: 'rgba(255, 39, 89, 0.2)', // Fundo rosa meio transparente
+              backgroundColor: 'rgba(255, 39, 89, 0.2)',
             },
           },
-          
-          // Estilo EXCLUSIVO da página que está selecionada/ativa
           '& .Mui-selected': {
-            backgroundColor: '#ff2759 !important', // Fundo rosa forte
+            backgroundColor: '#ff2759 !important',
             color: '#ffffff',
             borderColor: '#ff2759',
           },
-          
-          // Cor dos botões de setinha (Próximo/Anterior)
           '& .MuiPaginationItem-icon': {
             fill: '#ff2759', 
           }
