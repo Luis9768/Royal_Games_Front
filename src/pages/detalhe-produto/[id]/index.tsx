@@ -9,10 +9,10 @@ interface Jogo  {
     nome: string;
     descricao: string;
     preco: number;
-    imagem: string; // No seu código estava imagemUrl
-    classificacao: string; // Fique de olho se no seu banco está escrito "classificaçao" com 'ç'
-    genero: string[]; // No seu código estava generos
-    plataforma: string[]; // No seu código estava plataformas
+    imagem: string; 
+    classificacao: string; 
+    genero: string[]; 
+    plataforma: string[]; 
 }
 
 
@@ -36,7 +36,7 @@ async function listarJogo() {
 
         setTimeout(() => {
             listarJogo();
-        }, 1000); // 1 segundo
+        }, 1000);
     }, [id]);
 
 
