@@ -7,7 +7,7 @@ const Footer = () => {
         
         <div className={styles.rodape__logo}>
           <img 
-            src="../imgs/logo_royal.png" 
+            src="/imgs/logo_royal.png" 
             alt="Logo Royal Games" 
             className={styles.rodape__logoImagem}
           />

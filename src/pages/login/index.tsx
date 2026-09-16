@@ -1,8 +1,8 @@
 import { toast, ToastContainer } from "react-toastify";
 import styles from "./login.module.css";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { login } from "../api/authService";
+import { useRouter } from "next/router";
+import { login } from "@/services/authService";
 
 
 
@@ -34,10 +34,10 @@ const Login = () => {
   <>
     <ToastContainer theme="dark" />
     <main id={styles.main}>
-      <img src="../imgs/negona_robotica.png" alt="mulher robotica login" id={styles.imagem} />
+      <img src="/imgs/negona_robotica.png" alt="mulher robotica login" id={styles.imagem} />
       <div id={styles.campo_login} >
         <form id={styles.formulario}onSubmit={autenticar}>
-          <img src="../imgs/logo_royal.png" alt="logo do royal" id={styles.imagem_login} />
+          <img src="/imgs/logo_royal.png" alt="logo do royal" id={styles.imagem_login} />
           <div id={styles.campo_email}>
             <label htmlFor="email">Email</label>
             <input

@@ -12,12 +12,12 @@ const InfoBanner = () => {
 
                 <div className={styles.box_imagens}>
                     <img 
-                        src="../imgs/lolzin.png" 
+                        src="/imgs/lolzin.png" 
                         alt="Logo League of Legends" 
                         className={styles.img_jogo_logo} 
                     />
                     <img 
-                        src="../imgs/cs.png" 
+                        src="/imgs/cs.png" 
                         alt="Logo Counter-Strike Global Offensive" 
                         className={styles.img_jogo_logo} 
                     />

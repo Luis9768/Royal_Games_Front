@@ -2,37 +2,19 @@ import styles from "@/components/lista-produto/lista-produto.module.css";
 import CardProduto from "../card-produto/card-produto";
 import Paginacao from "@/components/paginacao/paginacao";
 import { useEffect, useState } from "react";
-// Importe a função que busca os gêneros do back-end
-import { excluirJogo, listarJogo, listarGeneros } from "@/pages/api/jogoService"; 
-import { toast } from "react-toastify";
-import { notificacao, toastConfirmarExclusao } from "@/utils/toast";
+import { excluirJogo, listarJogo, listarGeneros, Jogo, Genero } from "@/services/jogoService";
+import { notificacao, toastConfirmarExclusao, erro } from "@/utils/toast";
 import { verificarAutenticacao } from "@/utils/auth";
-
-interface Jogo {
-  jogoID: number;
-  nome: string;
-  descricao: string;
-  preco: number;
-  imagem: string;
-  statusJogo: boolean;
-  genero: string[]; // <-- Trocado de 'categorias' para 'generos'
-}
-
-// Interface de como o gênero vem do seu banco
-interface Genero {
-  id: number;
-  nome: string; 
-}
 
 const ListaProduto = () => {
   const [jogos, setJogos] = useState<Jogo[]>([]);
-  const [listaGeneros, setListaGeneros] = useState<Genero[]>([]); 
-  
+  const [listaGeneros, setListaGeneros] = useState<Genero[]>([]);
+
   const [ordem, setOrdem] = useState("todos");
   const [pesquisa, setPesquisa] = useState("");
   const [estaAutenticado, setEstaAutenticado] = useState(false);
-  
-  const [genero, setGenero] = useState("todos"); // <-- Trocado
+
+  const [genero, setGenero] = useState("todos");
   const [paginaAtual, setPaginaAtual] = useState(1);
   const itensPorPagina = 6;
 
@@ -41,7 +23,7 @@ const ListaProduto = () => {
       const lista = await listarJogo();
       setJogos(lista);
     } catch (error: any) {
-      console.log(error.message);
+      console.error("Erro ao listar jogos:", error);
     }
   }
 
@@ -50,7 +32,7 @@ const ListaProduto = () => {
       const generosDoBanco = await listarGeneros();
       setListaGeneros(generosDoBanco);
     } catch (error: any) {
-      console.log(error.message);
+      console.error("Erro ao buscar gêneros:", error);
     }
   }
 
@@ -59,14 +41,14 @@ const ListaProduto = () => {
       try {
         await excluirJogo(jogoId);
         setJogos((listaAtual) =>
-          listaAtual.map((jogo) =>
-            jogo.jogoID === jogoId ? { ...jogo, statusJogo: false } : jogo,
-          ),
+          listaAtual.map((j) =>
+            j.jogoId === jogoId ? { ...j, statusJogo: false } : j
+          )
         );
-        notificacao("Produto inativado chefe!");
+        notificacao("Jogo inativado com sucesso!");
         listar();
       } catch (error: any) {
-        console.log(error.message);
+        erro(error.message || "Erro ao inativar jogo");
       }
     });
   }
@@ -79,11 +61,14 @@ const ListaProduto = () => {
 
   useEffect(() => {
     setPaginaAtual(1);
-  }, [pesquisa, ordem, genero]); 
+  }, [pesquisa, ordem, genero]);
 
-  let jogosProcessados = [...jogos];
+  // Filtra por ativos (se não estiver logado como admin) e pesquisa
+  let jogosProcessados = jogos.filter((jogo) =>
+    estaAutenticado ? true : jogo.statusJogo === true
+  );
 
-  if (pesquisa !== "") {
+  if (pesquisa.trim() !== "") {
     jogosProcessados = jogosProcessados.filter((jogo) =>
       jogo.nome.toLowerCase().includes(pesquisa.toLowerCase())
     );
@@ -91,7 +76,7 @@ const ListaProduto = () => {
 
   if (genero !== "todos") {
     jogosProcessados = jogosProcessados.filter((jogo) =>
-      jogo.genero?.some((g) => g.toLowerCase() === genero.toLowerCase())
+      jogo.generos?.some((g) => g.toLowerCase() === genero.toLowerCase())
     );
   }
 
@@ -101,21 +86,21 @@ const ListaProduto = () => {
     } else if (ordem === "maior_valor") {
       return b.preco - a.preco;
     }
-    return a.jogoID - b.jogoID;
+    return a.jogoId - b.jogoId;
   });
 
   const totalPaginas = Math.ceil(jogosProcessados.length / itensPorPagina);
   const indexUltimoItem = paginaAtual * itensPorPagina;
   const indexPrimeiroItem = indexUltimoItem - itensPorPagina;
-  
+
   const jogosPaginados = jogosProcessados.slice(
     indexPrimeiroItem,
-    indexUltimoItem,
+    indexUltimoItem
   );
 
   const lidarComMudancaPagina = (
-    event: React.ChangeEvent<unknown>,
-    value: number,
+    _event: React.ChangeEvent<unknown>,
+    value: number
   ) => {
     setPaginaAtual(value);
   };
@@ -129,7 +114,7 @@ const ListaProduto = () => {
           <input
             type="text"
             name="pesquisa"
-            placeholder="Pesquise..."
+            placeholder="Pesquisar por título..."
             value={pesquisa}
             onChange={(e) => setPesquisa(e.target.value)}
           />
@@ -140,7 +125,7 @@ const ListaProduto = () => {
           value={ordem}
           onChange={(e) => setOrdem(e.target.value)}
         >
-          <option value="todos">Todos os preços</option>
+          <option value="todos">Ordenar por preço</option>
           <option value="menor_valor">Menor valor</option>
           <option value="maior_valor">Maior valor</option>
         </select>
@@ -152,13 +137,11 @@ const ListaProduto = () => {
           onChange={(e) => setGenero(e.target.value)}
         >
           <option value="todos">Todos os gêneros</option>
-          
           {listaGeneros.map((gen) => (
-            <option key={gen.id} value={gen.nome}>
+            <option key={gen.generoId} value={gen.nome}>
               {gen.nome}
             </option>
           ))}
-
         </select>
       </div>
 
@@ -166,16 +149,20 @@ const ListaProduto = () => {
         {jogosPaginados.length > 0 ? (
           jogosPaginados.map((item) => (
             <CardProduto
-              key={item.jogoID}
-              jogoID={item.jogoID}
+              key={item.jogoId}
+              jogoId={item.jogoId}
               titulo={item.nome}
               descricao={item.descricao}
               preco={item.preco}
-              img={item.imagem}
+              img={item.imagemUrl}
+              autenticado={estaAutenticado}
+              onExcluir={confirmarExclusao}
             />
           ))
         ) : (
-          <p>Nenhum produto encontrado...</p>
+          <p style={{ gridColumn: "1 / -1", textAlign: "center", color: "#a09cb0" }}>
+            Nenhum jogo encontrado com os filtros selecionados.
+          </p>
         )}
       </div>
 

@@ -22,7 +22,7 @@ const Home = () => {
               </h2>
             </div>
             <img
-              src="../imgs/banner.png"
+              src="/imgs/banner.png"
               alt="Foto futurista de uma mulher no estilo cyberpunk"
             />
           </div>
